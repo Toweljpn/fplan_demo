@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フリープランデモ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main-container">
+        <div id="canvas-container">
+            <canvas id="main-canvas"></canvas>
+        </div>
+        <div id="selection-container">
+            <h2>アイテム選択</h2>
+            <div id="item-groups">
+                <!-- アイテムグループはJavaScriptで動的に生成されます -->
+            </div>
+            <div class="control-group">
+                <label for="zoom-slider">ズーム</label>
+                <input type="range" id="zoom-slider" min="0.2" max="3" value="1" step="0.1" disabled>
+            </div>
+            <button id="save-button">保存</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

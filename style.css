@@ -1,0 +1,171 @@
+/* Google Fonts - Noto Serif JP for elegance */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Serif JP', serif;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #1a1a1a; /* Dark background for luxury */
+    color: #e0e0e0; /* Light text color */
+}
+
+#main-container {
+    display: flex;
+    height: 100%;
+}
+
+#canvas-container {
+    flex: 3; /* 75% */
+    border-right: 1px solid #444; /* Subtle dark border */
+    height: 100%;
+    overflow: auto;
+    position: relative;
+}
+
+#main-canvas {
+    display: block;
+    background-color: #2a2a2a; /* Slightly lighter dark for canvas */
+}
+
+#selection-container {
+    flex: 1; /* 25% */
+    padding: 30px; /* More padding for spacious feel */
+    box-sizing: border-box;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #222; /* Darker background for selection area */
+}
+
+#selection-container h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: #ffd700; /* Gold accent for titles */
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+#item-groups {
+    flex-grow: 1;
+}
+
+.item-group {
+    margin-bottom: 30px; /* More space between groups */
+    border: 1px solid #333; /* Darker, subtle border */
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #282828;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+}
+
+.item-group h3 {
+    margin-top: 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #444;
+    color: #f0f0f0;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.item-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px; /* More gap for items */
+    padding-top: 10px;
+}
+
+.item {
+    width: 100%;
+    height: 90px; /* Slightly larger items */
+    background-color: #3a3a3a; /* Darker item background */
+    border: 2px solid transparent;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.2s ease-in-out; /* Smooth transitions */
+    border-radius: 5px;
+}
+
+.item:hover {
+    border-color: #ffd700; /* Gold hover effect */
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Gold glow */
+}
+
+.item.selected {
+    border-color: #ffd700; /* Gold selection border */
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); /* Stronger gold glow */
+    transform: translateY(-2px); /* Slight lift on selection */
+}
+
+#save-button {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #ffd700; /* Gold button */
+    color: #1a1a1a; /* Dark text on gold */
+    border: none;
+    border-radius: 5px;
+    margin-top: 30px; /* More margin */
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+#save-button:hover {
+    background-color: #e6c200; /* Darker gold on hover */
+    transform: translateY(-1px); /* Slight lift */
+}
+
+.control-group {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #444;
+    text-align: center;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #f0f0f0;
+}
+
+#zoom-slider {
+    width: 80%; /* Slightly narrower slider */
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: #555; /* Darker track */
+    outline: none;
+    border-radius: 4px;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+#zoom-slider:hover {
+    opacity: 1;
+}
+
+#zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #ffd700; /* Gold thumb */
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
+}
+
+#zoom-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #ffd700;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
+}
