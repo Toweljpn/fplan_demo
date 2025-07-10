@@ -1,25 +1,27 @@
-
 from PIL import Image
 import os
 
-# アイテムの色の定義 (script.jsから持ってくる)
+# アイテムの色の定義 (高級感のある明るいトーン)
 item_colors = [
-    {'group': 1, 'color': '#ff6b6b'},
-    {'group': 1, 'color': '#f06595'},
-    {'group': 1, 'color': '#cc5de8'},
-    {'group': 1, 'color': '#845ef7'},
-    {'group': 2, 'color': '#5c7cfa'},
-    {'group': 2, 'color': '#339af0'},
-    {'group': 2, 'color': '#22b8cf'},
-    {'group': 2, 'color': '#20c997'},
-    {'group': 3, 'color': '#51cf66'},
-    {'group': 3, 'color': '#94d82d'},
-    {'group': 3, 'color': '#fcc419'},
-    {'group': 3, 'color': '#ff922b'},
-    {'group': 4, 'color': '#adb5bd'},
-    {'group': 4, 'color': '#868e96'},
-    {'group': 4, 'color': '#495057'},
-    {'group': 4, 'color': '#ced4da'},
+    {'group': 1, 'color': '#F0E68C'}, # Khaki (Light Gold)
+    {'group': 1, 'color': '#DAA520'}, # Goldenrod (Deeper Gold)
+    {'group': 1, 'color': '#B8860B'}, # DarkGoldenrod (Rich Gold)
+    {'group': 1, 'color': '#FFD700'}, # Gold (Bright Gold)
+
+    {'group': 2, 'color': '#E6E6FA'}, # Lavender (Soft Purple)
+    {'group': 2, 'color': '#DDA0DD'}, # Plum (Muted Purple)
+    {'group': 2, 'color': '#BA55D3'}, # MediumOrchid (Vibrant Purple)
+    {'group': 2, 'color': '#9932CC'}, # DarkOrchid (Deep Purple)
+
+    {'group': 3, 'color': '#ADD8E6'}, # LightBlue (Soft Blue)
+    {'group': 3, 'color': '#87CEEB'}, # SkyBlue (Clear Blue)
+    {'group': 3, 'color': '#6495ED'}, # CornflowerBlue (Medium Blue)
+    {'group': 3, 'color': '#4682B4'}, # SteelBlue (Muted Blue)
+
+    {'group': 4, 'color': '#90EE90'}, # LightGreen (Soft Green)
+    {'group': 4, 'color': '#3CB371'}, # MediumSeaGreen (Muted Green)
+    {'group': 4, 'color': '#2E8B57'}, # SeaGreen (Deep Green)
+    {'group': 4, 'color': '#006400'}, # DarkGreen (Rich Green)
 ]
 
 # 保存先ディレクトリ

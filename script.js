@@ -107,10 +107,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.drawImage(item.image, item.x, item.y, item.width, item.height);
                 // アクティブなアイテムに枠線を描画
                 if (item === activeCanvasItem) {
-                    ctx.strokeStyle = '#007bff';
+                    ctx.strokeStyle = '#B8860B'; // Gold color for luxury theme
                     ctx.lineWidth = 2;
                     ctx.strokeRect(item.x, item.y, item.width, item.height);
                 }
+            }
+        });
+    }
+
+    // 保存用のキャンバス描画 (選択枠なし)
+    function drawCanvasForSave() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvasItems.sort((a, b) => a.zIndex - b.zIndex);
+        canvasItems.forEach(item => {
+            if (item.image && item.image.complete) {
+                ctx.drawImage(item.image, item.x, item.y, item.width, item.height);
+            } else {
+                // 画像が読み込まれていない場合はエラーログを出力
+                console.error(`保存時に画像が読み込まれていません: ${item.imagePath}`);
             }
         });
     }
@@ -171,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activeCanvasItem) {
             const newScale = parseFloat(e.target.value);
             activeCanvasItem.scale = newScale;
-            // 中心を基準に拡大縮小
             const oldWidth = activeCanvasItem.width;
             const oldHeight = activeCanvasItem.height;
             activeCanvasItem.width = 100 * newScale;
@@ -183,12 +196,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     saveButton.addEventListener('click', () => {
+        const currentActiveItem = activeCanvasItem; // 現在のアクティブアイテムを保持
         setActiveCanvasItem(null); // 保存時に選択枠を消す
-        drawCanvas(); // 枠線なしで再描画
+        drawCanvasForSave(); // 枠線なしで再描画
+
         const link = document.createElement('a');
-        link.download = 'floor-plan-composition.png';
+        link.download = 'free-plan-composition.png'; // ファイル名を変更
         link.href = canvas.toDataURL('image/png');
         link.click();
+
+        // ダウンロード後に元のアクティブアイテムを復元
+        if (currentActiveItem) {
+            setActiveCanvasItem(currentActiveItem);
+        }
+        drawCanvas(); // 選択枠を再描画
     });
 
     function initialize() {
