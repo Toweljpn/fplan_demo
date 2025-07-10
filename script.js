@@ -140,9 +140,30 @@ document.addEventListener('DOMContentLoaded', () => {
         drawCanvas();
     }
 
-    canvas.addEventListener('mousedown', (e) => {
-        const mouseX = e.clientX - canvas.getBoundingClientRect().left;
-        const mouseY = e.clientY - canvas.getBoundingClientRect().top;
+    // Helper function to get coordinates from mouse or touch event
+    function getEventCoords(e) {
+        const rect = canvas.getBoundingClientRect();
+        if (e.touches && e.touches.length > 0) {
+            return {
+                x: e.touches[0].clientX - rect.left,
+                y: e.touches[0].clientY - rect.top
+            };
+        } else {
+            return {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+    }
+
+    canvas.addEventListener('mousedown', handleStart);
+    canvas.addEventListener('touchstart', handleStart);
+
+    function handleStart(e) {
+        e.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
+        const coords = getEventCoords(e);
+        const mouseX = coords.x;
+        const mouseY = coords.y;
 
         let clickedItem = null;
         for (let i = canvasItems.length - 1; i >= 0; i--) {
@@ -161,25 +182,32 @@ document.addEventListener('DOMContentLoaded', () => {
             offsetX = mouseX - clickedItem.x;
             offsetY = mouseY - clickedItem.y;
         }
-    });
+    }
 
-    canvas.addEventListener('mousemove', (e) => {
+    canvas.addEventListener('mousemove', handleMove);
+    canvas.addEventListener('touchmove', handleMove);
+
+    function handleMove(e) {
         if (isDragging && activeCanvasItem) {
-            const mouseX = e.clientX - canvas.getBoundingClientRect().left;
-            const mouseY = e.clientY - canvas.getBoundingClientRect().top;
+            e.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
+            const coords = getEventCoords(e);
+            const mouseX = coords.x;
+            const mouseY = coords.y;
             activeCanvasItem.x = mouseX - offsetX;
             activeCanvasItem.y = mouseY - offsetY;
             drawCanvas();
         }
-    });
+    }
 
-    canvas.addEventListener('mouseup', () => {
-        isDragging = false;
-    });
+    canvas.addEventListener('mouseup', handleEnd);
+    canvas.addEventListener('touchend', handleEnd);
+    canvas.addEventListener('touchcancel', handleEnd); // Handle cases where touch is interrupted
     
-    canvas.addEventListener('mouseleave', () => {
+    canvas.addEventListener('mouseleave', handleEnd);
+
+    function handleEnd() {
         isDragging = false;
-    });
+    }
 
     zoomSlider.addEventListener('input', (e) => {
         if (activeCanvasItem) {
